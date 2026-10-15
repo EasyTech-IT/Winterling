@@ -1,0 +1,10 @@
+# Winterling Baudekoration – https://www.winterling-baudeko.de/
+User-agent: *
+Allow: /
+
+Disallow: /partials/
+Disallow: /404
+Disallow: /404.html
+Disallow: /send-mail.php
+
+Sitemap: https://www.winterling-baudeko.de/sitemap.xml
