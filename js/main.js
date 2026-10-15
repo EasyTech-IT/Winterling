@@ -809,38 +809,16 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
 
     /* JS-SECTION 13 END | Seite: Galerie-/Referenzseiten | Section: Lightbox für Bilder */
 
-    /* JS-SECTION 14 BEGIN | Seite: Kontaktseite / Seiten mit kontakt-form | Section: Kontaktformular: Validierung und Versand */
-    /* Form – PHP-Versand, Mailto-Fallback wenn Server nicht erreichbar */
+    /* JS-SECTION 14 BEGIN | Seite: Kontaktseite / Seiten mit kontakt-form | Section: Kontaktformular: Validierung und E-Mail-Entwurf */
     const form = document.getElementById("kontakt-form");
     const errorEl = document.getElementById("form-error");
     const successEl = document.getElementById("form-success");
-    const tsInput = document.getElementById("c-form-ts");
-    const tokenInput = document.getElementById("c-form-token");
     const honeyInput = document.getElementById("c-honey");
     const faxInput = document.getElementById("c-fax");
-    const submitBtn = document.getElementById("form-submit");
-    const submitText = document.getElementById("form-submit-text");
 
     const PROTECTED_MAIL =
       '<span class="protected-email" data-user="info" data-domain="winterling-baudeko.de" role="link" tabindex="0" aria-label="E-Mail an Winterling schreiben">info(at)winterling-baudeko.de</span>';
     const MSG_VALIDATION = `Bitte Pflichtfelder ausfüllen und Einwilligung bestätigen. Bei Problemen: ${PROTECTED_MAIL} oder <a href="tel:+4960476940">06047/6940</a>.`;
-    const MSG_SEND_FAIL = `Senden ist gerade nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt: ${PROTECTED_MAIL} oder <a href="tel:+4960476940">06047/6940</a>.`;
-    const FORM_ENDPOINT = "/Winterling/send-mail.php";
-
-    const buildFormToken = (ts) => {
-      const raw = `${ts}|werk-contact-v1`;
-      let out = "";
-      for (let i = 0; i < raw.length; i++) {
-        out += ((raw.charCodeAt(i) * (i + 3)) % 36).toString(36);
-      }
-      return out.slice(0, 20);
-    };
-
-    const armForm = () => {
-      const ts = Math.floor(Date.now() / 1000);
-      if (tsInput) tsInput.value = String(ts);
-      if (tokenInput) tokenInput.value = buildFormToken(ts);
-    };
 
     const setFormAlert = (el, visible, html) => {
       if (!el) return;
@@ -849,9 +827,7 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
     };
 
     if (form) {
-      armForm();
-
-      form.addEventListener("submit", async (event) => {
+      form.addEventListener("submit", (event) => {
         event.preventDefault();
         setFormAlert(errorEl, false);
         setFormAlert(successEl, false);
@@ -861,8 +837,6 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
           (faxInput?.value || "").trim() !== ""
         ) {
           setFormAlert(successEl, true);
-          form.reset();
-          armForm();
           return;
         }
 
@@ -872,63 +846,30 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
           return;
         }
 
-        if (tsInput && !tsInput.value) {
-          armForm();
-          await new Promise((r) => setTimeout(r, 2100));
-        } else if (tsInput) {
-          const ageMs = Date.now() - Number(tsInput.value) * 1000;
-          if (ageMs < 2000) {
-            await new Promise((r) => setTimeout(r, 2000 - ageMs + 50));
-          }
-        }
+        const name = form.elements.namedItem("name").value.trim();
+        const phone = form.elements.namedItem("phone").value.trim();
+        const email = form.elements.namedItem("email").value.trim();
+        const message = form.elements.namedItem("message").value.trim();
+        const subject = "Kontaktanfrage über die Website";
+        const body = [
+          `Name: ${name}`,
+          `Telefon: ${phone}`,
+          `E-Mail: ${email}`,
+          "",
+          "Nachricht:",
+          message,
+        ].join("\n");
+        const mailto =
+          `mailto:info@winterling-baudeko.de?subject=${encodeURIComponent(subject)}` +
+          `&body=${encodeURIComponent(body)}`;
 
-        const defaultLabel =
-          submitText?.textContent || "Kostenloses Angebot anfragen";
-        if (submitBtn) submitBtn.disabled = true;
-        if (submitText) submitText.textContent = "Wird gesendet …";
-
-        const formData = new FormData(form);
-        formData.set("website", "");
-        formData.set("fax_number", "");
-
-        let sent = false;
-        let failMessage = MSG_SEND_FAIL;
-        try {
-          const res = await fetch(FORM_ENDPOINT, {
-            method: "POST",
-            body: formData,
-            signal: AbortSignal.timeout(12000),
-          });
-          const rawText = await res.text();
-          let data = null;
-          try {
-            data = JSON.parse(rawText);
-          } catch (_) {
-            data = null;
-          }
-          if (data?.error && typeof data.error === "string") {
-            failMessage = `${data.error} Alternativ: ${PROTECTED_MAIL} oder <a href="tel:+4960476940">06047/6940</a>.`;
-          }
-          sent = Boolean(res.ok && data && data.ok === true);
-        } catch (_) {
-          sent = false;
-        }
-
-        if (submitBtn) submitBtn.disabled = false;
-        if (submitText) submitText.textContent = defaultLabel;
-
-        if (sent) {
-          form.reset();
-          armForm();
-          setFormAlert(successEl, true);
-          successEl?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        } else {
-          setFormAlert(errorEl, true, failMessage);
-        }
+        setFormAlert(successEl, true);
+        successEl?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        window.location.href = mailto;
       });
     }
 
-    /* JS-SECTION 14 END | Seite: Kontaktseite / Seiten mit kontakt-form | Section: Kontaktformular: Validierung und Versand */
+    /* JS-SECTION 14 END | Seite: Kontaktseite / Seiten mit kontakt-form | Section: Kontaktformular: Validierung und E-Mail-Entwurf */
 
     /* JS-SECTION 15 BEGIN | Seite: Alle Seiten / global | Section: Cookie-Einwilligung und Google Analytics */
     /* Cookie consent + Google Analytics (nur nach Opt-in) */

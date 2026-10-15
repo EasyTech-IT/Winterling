@@ -392,8 +392,6 @@
             <form
               class="form"
               id="kontakt-form"
-              action="/Winterling/send-mail.php"
-              method="post"
               novalidate
             >
               <div class="form-honeypot" aria-hidden="true">
@@ -417,14 +415,6 @@
                   autocomplete="off"
                 />
               </div>
-
-              <input type="hidden" name="form_ts" id="c-form-ts" value="" />
-              <input
-                type="hidden"
-                name="form_token"
-                id="c-form-token"
-                value=""
-              />
 
               <div class="form__row">
                 <label for="name">Ihr Name *</label>
@@ -498,8 +488,8 @@
               </p>
 
               <p class="form__success" id="form-success" role="status" hidden>
-                Vielen Dank für Ihre Nachricht. Wir melden uns zeitnah bei
-                Ihnen.
+                Ihr Mailprogramm sollte sich mit Ihrer vorbereiteten Anfrage
+                öffnen. Bitte senden Sie die E-Mail dort noch ab.
               </p>
 
               <button class="btn btn--primary" type="submit" id="form-submit">

@@ -5586,6 +5586,57 @@ body:has(.cookie-banner.is-open) .float-dock {
   aspect-ratio: 16 / 10;
 }
 
+.service-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.service-overview-card {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 1rem;
+  min-height: 190px;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  color: var(--black);
+  text-align: center;
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.service-overview-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(230, 90, 16, 0.45);
+  box-shadow: var(--shadow-hover);
+}
+
+.service-overview-card:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.service-overview-card img {
+  width: 92px;
+  height: 92px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.service-overview-card strong {
+  max-width: 18ch;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
 .work-card {
   position: relative;
   display: block;
@@ -5911,6 +5962,10 @@ body:has(.cookie-banner.is-open) .float-dock {
 }
 
 @media (max-width: 980px) {
+  .service-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .work-grid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: none;
