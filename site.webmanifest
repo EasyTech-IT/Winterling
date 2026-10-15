@@ -1,11 +1,11 @@
 {
   "name": "Winterling GmbH Baudekoration",
   "short_name": "Winterling",
-  "start_url": "/",
+  "start_url": "/Winterling/",
   "display": "standalone",
   "background_color": "#f7f6f4",
   "theme_color": "#e07b00",
   "icons": [
-    { "src": "/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+    { "src": "/Winterling/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
   ]
 }

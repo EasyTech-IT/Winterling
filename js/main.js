@@ -70,7 +70,7 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
       else link.removeAttribute("aria-current");
     });
 
-    const cta = document.body.getAttribute("data-cta") || "/kontakt#angebot";
+    const cta = document.body.getAttribute("data-cta") || "/Winterling/kontakt#angebot";
     document.querySelectorAll("[data-nav-cta]").forEach((link) => {
       link.setAttribute("href", cta);
     });
@@ -825,7 +825,7 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
       'Bitte Pflichtfelder ausfüllen und Einwilligung bestätigen.       Bei Problemen: <a href="mailto:info@winterling-baudeko.de">info@winterling-baudeko.de</a> oder <a href="tel:+4960476940">06047/6940</a>.';
     const MSG_SEND_FAIL =
       'Senden ist gerade nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt: <a href="mailto:info@winterling-baudeko.de">info@winterling-baudeko.de</a> oder <a href="tel:+4960476940">06047/6940</a>.';
-    const FORM_ENDPOINT = "/send-mail.php";
+    const FORM_ENDPOINT = "/Winterling/send-mail.php";
 
     const buildFormToken = (ts) => {
       const raw = `${ts}|werk-contact-v1`;
@@ -1055,7 +1055,7 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
           <p class="cookie-banner__text">
             Wir verwenden technisch notwendige Cookies und – nur mit Ihrer Einwilligung –
             Statistik (Google Analytics) sowie externe Inhalte (Google Maps). Details finden Sie in unserer
-            <a href="/datenschutz">Datenschutzerklärung</a>.
+            <a href="/Winterling/datenschutz">Datenschutzerklärung</a>.
           </p>
           <div class="cookie-banner__actions">
             <button type="button" class="btn btn--primary" data-cookie-accept-all>Alle akzeptieren</button>
