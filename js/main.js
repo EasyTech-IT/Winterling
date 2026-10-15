@@ -1118,6 +1118,57 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
       "[data-cookie-toggle-settings]",
     );
 
+    const unlockScroll = () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+
+    const bannerIsVisible = () => {
+      if (!banner || !banner.isConnected) return false;
+      const box = banner.querySelector(".cookie-banner__panel") || banner;
+      const cs = window.getComputedStyle(banner);
+      if (cs.display === "none" || cs.visibility === "hidden") return false;
+      if (Number(cs.opacity) === 0) return false;
+      const r = box.getBoundingClientRect();
+      return r.width > 40 && r.height > 40;
+    };
+
+    const showBlockedHint = () => {
+      unlockScroll();
+      if (document.getElementById("site-hint-blocked")) return;
+      document.body.insertAdjacentHTML(
+        "beforeend",
+        `<div class="site-hint" id="site-hint-blocked" role="alert">
+          <div class="site-hint__box">
+            <p class="site-hint__title">Hinweis zur Darstellung</p>
+            <p class="site-hint__text">
+              Unsere Einwilligungsabfrage wird bei Ihnen vermutlich von einem
+              Werbe- oder Tracking-Blocker, den Brave-Shields oder einem VPN-Filter
+              unterdrückt. Falls Sie Probleme beim Scrollen oder Bedienen der Seite
+              haben, schalten Sie bitte für diese Seite den Blocker bzw. das VPN
+              vorübergehend aus und laden Sie die Seite neu.
+            </p>
+            <button type="button" class="btn btn--primary" data-site-hint-close>Verstanden</button>
+          </div>
+        </div>`,
+      );
+      document
+        .querySelector("[data-site-hint-close]")
+        ?.addEventListener("click", () => {
+          document.getElementById("site-hint-blocked")?.remove();
+        });
+    };
+
+    /* Filterlisten blenden den Banner teils verzögert aus: mehrfach prüfen */
+    const watchBannerVisibility = () => {
+      [350, 1200, 2500].forEach((ms) => {
+        window.setTimeout(() => {
+          if (!banner?.classList.contains("is-open")) return;
+          if (!bannerIsVisible()) showBlockedHint();
+        }, ms);
+      });
+    };
+
     const openBanner = (prefs) => {
       if (!banner) return;
       if (analyticsToggle) analyticsToggle.checked = Boolean(prefs?.analytics);
@@ -1128,13 +1179,15 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
       banner.classList.add("is-open");
       banner.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
+      watchBannerVisibility();
     };
 
     const closeBanner = () => {
       if (!banner) return;
       banner.classList.remove("is-open");
       banner.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
+      unlockScroll();
+      document.getElementById("site-hint-blocked")?.remove();
     };
 
     const saveAndClose = (consent) => {

@@ -13352,3 +13352,45 @@ body[data-page="kontakt"] main a:not(.btn):not(.phone-block) {
 /* =========================================================
    ENDE: MOBIL – KOMPAKTE 2x2-RASTER
    ========================================================= */
+
+/* =========================================================
+   START: HINWEIS BEI BLOCKIERTER EINWILLIGUNGSABFRAGE
+   ========================================================= */
+
+.site-hint {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(26, 26, 27, 0.72);
+}
+
+.site-hint__box {
+  width: min(520px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--black);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+}
+
+.site-hint__title {
+  margin: 0 0 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.site-hint__text {
+  margin: 0 0 1.2rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   ENDE: HINWEIS BEI BLOCKIERTER EINWILLIGUNGSABFRAGE
+   ========================================================= */
