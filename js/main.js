@@ -97,8 +97,8 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
     el.classList.add("is-play");
     if (reduce) el.classList.add("is-static");
 
-    const holdMs = reduce ? 400 : 750;
-    const fadeMs = reduce ? 180 : 280;
+    const holdMs = reduce ? 150 : 350;
+    const fadeMs = reduce ? 100 : 180;
     let finished = false;
 
     const close = () => {
@@ -821,10 +821,10 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
     const submitBtn = document.getElementById("form-submit");
     const submitText = document.getElementById("form-submit-text");
 
-    const MSG_VALIDATION =
-      'Bitte Pflichtfelder ausfüllen und Einwilligung bestätigen.       Bei Problemen: <a href="mailto:info@winterling-baudeko.de">info@winterling-baudeko.de</a> oder <a href="tel:+4960476940">06047/6940</a>.';
-    const MSG_SEND_FAIL =
-      'Senden ist gerade nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt: <a href="mailto:info@winterling-baudeko.de">info@winterling-baudeko.de</a> oder <a href="tel:+4960476940">06047/6940</a>.';
+    const PROTECTED_MAIL =
+      '<span class="protected-email" data-user="info" data-domain="winterling-baudeko.de" role="link" tabindex="0" aria-label="E-Mail an Winterling schreiben">info(at)winterling-baudeko.de</span>';
+    const MSG_VALIDATION = `Bitte Pflichtfelder ausfüllen und Einwilligung bestätigen. Bei Problemen: ${PROTECTED_MAIL} oder <a href="tel:+4960476940">06047/6940</a>.`;
+    const MSG_SEND_FAIL = `Senden ist gerade nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt: ${PROTECTED_MAIL} oder <a href="tel:+4960476940">06047/6940</a>.`;
     const FORM_ENDPOINT = "/Winterling/send-mail.php";
 
     const buildFormToken = (ts) => {
@@ -907,7 +907,7 @@ document.documentElement.style.backgroundColor = "#f7f6f4";
             data = null;
           }
           if (data?.error && typeof data.error === "string") {
-            failMessage = `${data.error} Alternativ: <a href="mailto:info@winterling-baudeko.de">info@winterling-baudeko.de</a> oder <a href="tel:+4960476940">06047/6940</a>.`;
+            failMessage = `${data.error} Alternativ: ${PROTECTED_MAIL} oder <a href="tel:+4960476940">06047/6940</a>.`;
           }
           sent = Boolean(res.ok && data && data.ok === true);
         } catch (_) {
@@ -1677,33 +1677,50 @@ document.addEventListener("DOMContentLoaded", function () {
    Keine mailto-URL in der Statusleiste anzeigen
    ===================================================== */
 
-document.querySelectorAll(".protected-email").forEach((element) => {
-  const user = element.dataset.user;
-  const domain = element.dataset.domain;
+const initProtectedEmails = (root = document) => {
+  root.querySelectorAll(".protected-email").forEach((element) => {
+    if (element.dataset.protectedReady) return;
 
-  if (!user || !domain) return;
+    const user = element.dataset.user;
+    const domain = element.dataset.domain;
 
-  // Sichtbare Schreibweise beibehalten
-  element.textContent = `${user}(at)${domain}`;
-  element.style.cursor = "pointer";
-  element.style.color = "var(--orange, #d97200)";
-  element.style.fontWeight = "600";
-  element.style.textDecoration = "none";
+    if (!user || !domain) return;
+    element.dataset.protectedReady = "true";
 
-  // E-Mail-Programm erst beim Klick öffnen
-  const openEmail = () => {
-    const address = `${user}@${domain}`;
-    window.location.href = `mailto:${address}`;
-  };
+    // Sichtbare Schreibweise beibehalten
+    element.textContent = `${user}(at)${domain}`;
+    element.style.cursor = "pointer";
 
-  element.addEventListener("click", openEmail);
-
-  element.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      openEmail();
+    // Im Footer bestimmt das Footer-Design die Farbe; eigene Inline-Farben bleiben erhalten
+    if (!element.closest(".site-footer") && !element.style.color) {
+      element.style.color = "var(--orange, #d97200)";
+      element.style.fontWeight = "600";
+      element.style.textDecoration = "none";
     }
+
+    // E-Mail-Programm erst beim Klick öffnen
+    const openEmail = () => {
+      const address = `${user}@${domain}`;
+      window.location.href = `mailto:${address}`;
+    };
+
+    element.addEventListener("click", openEmail);
+
+    element.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openEmail();
+      }
+    });
   });
+};
+
+initProtectedEmails();
+
+// Nachgeladene Bereiche (Header/Footer-Partials, Formularmeldungen) ebenfalls schützen
+new MutationObserver(() => initProtectedEmails()).observe(document.body, {
+  childList: true,
+  subtree: true,
 });
 
 /* =====================================================

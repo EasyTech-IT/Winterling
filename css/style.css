@@ -167,6 +167,15 @@ html.is-intro body {
   background: #fff;
   color: var(--black);
   pointer-events: none;
+  /* Fallback: Intro blendet sich auch ohne JavaScript aus */
+  animation: intro-failsafe 0.2s ease 1.8s forwards;
+}
+
+@keyframes intro-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .page-intro__glow {
@@ -244,11 +253,11 @@ html.is-intro body {
 }
 
 .page-intro.is-play .page-intro__logo {
-  animation: intro-rise 0.28s var(--ease) forwards;
+  animation: intro-rise 0.2s var(--ease) forwards;
 }
 
 .page-intro.is-play .page-intro__fill {
-  animation: intro-load 0.55s var(--ease) forwards;
+  animation: intro-load 0.3s var(--ease) forwards;
 }
 
 .page-intro.is-out {
@@ -11199,7 +11208,7 @@ body[data-page="referenzen"] .ref-section__intro > p:last-child {
 }
 
 .wb-career-position-label {
-  color: var(--orange-deep, #b45f00);
+  color: var(--orange-ink, #a35600);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -13180,4 +13189,166 @@ body[data-page="datenschutz"] .protected-email:focus-visible {
 
 /* =========================================================
    ENDE: DATENSCHUTZERKLÄRUNG
+   ========================================================= */
+
+/* =========================================================
+   START: KONTRASTKORREKTUR (WCAG AA)
+   Orange auf hellem Grund war mit ca. 3,1:1 zu schwach.
+   Orange auf dunklem Grund (Hero, Footer) bleibt unverändert.
+   ========================================================= */
+
+:root {
+  --orange-ink: #a35600;
+}
+
+.btn--primary {
+  background: var(--orange-deep);
+}
+
+.btn--primary:hover {
+  background: #8f4c00;
+}
+
+body[data-page] .eyebrow,
+body[data-page] .winterling-eyebrow,
+body[data-page] .privacy-kicker,
+body[data-page] .privacy-number,
+body[data-page] .wb-benefit-card__number,
+body[data-page] .wb-hierarchy-kicker,
+body[data-page] .wb-person-level,
+body[data-page] .wb-email-button,
+body[data-page] .wb-process-step__eyebrow,
+body[data-page] .text-link,
+body[data-page] .phone-block__number {
+  color: var(--orange-ink);
+}
+
+body[data-page] .page-hero .eyebrow,
+body[data-page] .page-hero .winterling-eyebrow,
+body[data-page] .site-footer .eyebrow {
+  color: var(--orange);
+}
+
+.nav a[aria-current="page"] {
+  color: var(--orange-ink);
+}
+
+body[data-page] .protected-email:not([style*="inherit"]),
+body[data-page] .privacy-contact a,
+body[data-page] .legal-contact-item a {
+  color: var(--orange-ink) !important;
+}
+
+body[data-page="kontakt"] main a:not(.btn):not(.phone-block) {
+  color: var(--orange-ink);
+}
+
+.site-footer .protected-email {
+  color: inherit !important;
+}
+
+.site-footer .protected-email:hover {
+  color: var(--orange) !important;
+}
+
+/* =========================================================
+   ENDE: KONTRASTKORREKTUR (WCAG AA)
+   ========================================================= */
+
+/* =========================================================
+   START: MOBIL – KOMPAKTE 2x2-RASTER
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .wb-benefits__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  .wb-benefit-card {
+    padding: 0.85rem;
+    border-radius: 14px;
+  }
+
+  .wb-benefit-card__top {
+    margin-bottom: 0.6rem;
+  }
+
+  .wb-benefit-card__icon {
+    flex-basis: 42px;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+
+  .wb-benefit-card__icon img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .wb-benefit-card h3 {
+    font-size: 0.95rem;
+    line-height: 1.25;
+  }
+
+  .wb-benefit-card p {
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  .wb-process__grid,
+  .service-tiles,
+  .ref-gallery,
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  .wb-process__grid > *,
+  .service-tiles > *,
+  .ref-gallery > * {
+    min-width: 0;
+  }
+
+  body .service-tiles.service-tiles,
+  body .winterling-services .service-tiles.service-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  body .service-tiles .service-tile__body {
+    padding: 0.7rem 0.65rem 0.8rem;
+  }
+
+  body .service-tiles .service-tile__body strong {
+    font-size: 0.82rem;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  body .service-tiles .service-tile__body span {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .wb-person-level,
+  .eyebrow {
+    font-size: 0.75rem;
+  }
+
+  .work-card__label strong {
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  .site-footer a {
+    display: inline-block;
+    padding-block: 0.4rem;
+  }
+}
+
+/* =========================================================
+   ENDE: MOBIL – KOMPAKTE 2x2-RASTER
    ========================================================= */

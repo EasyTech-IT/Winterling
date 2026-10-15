@@ -2,68 +2,62 @@
 <html lang="de" style="color-scheme: light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
     <meta name="supported-color-schemes" content="light" />
     <meta name="theme-color" content="#f7f6f4" />
-    <style>
-      html {
-        color-scheme: light !important;
-        background-color: #f7f6f4 !important;
-      }
-      body {
-        background-color: #f7f6f4 !important;
-        color: #1a1a1b !important;
-      }
-    </style>
-    <base href="/Winterling/" />
-    <title>Kontakt | Winterling Baudekoration Altenstadt</title>
+
+    <title>Kontakt | Winterling GmbH Baudekoration in Altenstadt</title>
+
     <meta
       name="description"
-      content="Kontakt zur Winterling GmbH Baudekoration, Breiter Weg 3, 63674 Altenstadt-Oberau. Tel. 06047/6940, E-Mail info@winterling-baudeko.de."
+      content="Kontaktieren Sie die Winterling GmbH Baudekoration in Altenstadt-Oberau. Rufen Sie uns unter 06047/6940 an oder senden Sie uns eine unverbindliche Anfrage."
     />
     <meta name="robots" content="index, follow" />
-    <link
-      rel="canonical"
-      href="Kontakt zur Winterling GmbH Baudekoration, Breiter Weg 3, 63674 Altenstadt-Oberau. Tel. 06047/6940, E-Mail info@winterling-baudeko.de./kontakt"
-    />
-    <meta
-      property="og:title"
-      content="Kontakt | Winterling Baudekoration Altenstadt"
-    />
+
+    <link rel="canonical" href="https://www.winterling-baudeko.de/kontakt" />
+
+    <meta property="og:title" content="Kontakt | Winterling Baudekoration" />
     <meta
       property="og:description"
-      content="Kontakt zur Winterling GmbH Baudekoration, Breiter Weg 3, 63674 Altenstadt-Oberau. Tel. 06047/6940, E-Mail info@winterling-baudeko.de."
+      content="Sie haben Fragen oder möchten ein Angebot anfragen? Kontaktieren Sie Winterling GmbH Baudekoration in Altenstadt-Oberau."
     />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="de_DE" />
     <meta
       property="og:url"
-      content="Kontakt zur Winterling GmbH Baudekoration, Breiter Weg 3, 63674 Altenstadt-Oberau. Tel. 06047/6940, E-Mail info@winterling-baudeko.de./kontakt"
+      content="https://www.winterling-baudeko.de/kontakt"
     />
     <meta
       property="og:image"
-      content="Kontakt zur Winterling GmbH Baudekoration, Breiter Weg 3, 63674 Altenstadt-Oberau. Tel. 06047/6940, E-Mail info@winterling-baudeko.de./assets/img/wb/Winterling-Teamfoto-03_940x280_01_aa1e7a61f6.jpg"
+      content="https://www.winterling-baudeko.de/assets/img/wb/Winterling-Teamfoto-03_940x280_01_aa1e7a61f6.jpg"
     />
-    <link rel="icon" href="assets/img/favicon.ico" sizes="any" />
+    <meta
+      property="og:image:alt"
+      content="Team der Winterling GmbH Baudekoration"
+    />
+
+    <link rel="icon" href="/Winterling/assets/img/favicon.ico" sizes="any" />
     <link
       rel="icon"
-      href="assets/img/favicon-32.png"
+      href="/Winterling/assets/img/favicon-32.png"
       type="image/png"
       sizes="32x32"
     />
     <link
       rel="icon"
-      href="assets/img/favicon-16.png"
+      href="/Winterling/assets/img/favicon-16.png"
       type="image/png"
       sizes="16x16"
     />
     <link
       rel="apple-touch-icon"
-      href="assets/img/apple-touch-icon.png"
+      href="/Winterling/assets/img/apple-touch-icon.png"
       sizes="180x180"
     />
-    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="stylesheet" href="/Winterling/css/style.css" />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -73,9 +67,9 @@
         "mainEntity": {
           "@type": "HousePainter",
           "name": "Winterling GmbH Baudekoration",
+          "url": "https://www.winterling-baudeko.de",
           "telephone": "+4960476940",
           "faxNumber": "+4960472356",
-          "email": "info@winterling-baudeko.de",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "Breiter Weg 3",
@@ -87,112 +81,314 @@
         }
       }
     </script>
+
+    <style>
+      html {
+        color-scheme: light;
+        background: #f7f6f4;
+      }
+
+      body {
+        background: #f7f6f4;
+        color: #1a1a1b;
+      }
+
+      .contact-intro {
+        padding-block: clamp(2rem, 5vw, 4rem);
+      }
+
+      .contact-intro__inner {
+        max-width: 820px;
+      }
+
+      .contact-intro__text {
+        margin: 0;
+        font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+        line-height: 1.8;
+      }
+
+      .contact-intro a,
+      .form-panel__info a:not(.phone-block),
+      .protected-email a {
+        color: var(--orange, #d97200);
+        font-weight: 600;
+        overflow-wrap: anywhere;
+      }
+
+      .form-section {
+        padding-block: clamp(2.5rem, 6vw, 5rem);
+      }
+
+      .form-section .section-title {
+        margin-bottom: 2rem;
+      }
+
+      .form-panel {
+        display: grid;
+        grid-template-columns: minmax(250px, 0.8fr) minmax(0, 1.2fr);
+        gap: clamp(1.5rem, 4vw, 3rem);
+        align-items: start;
+      }
+
+      .form-panel__info,
+      .form-panel > .form {
+        min-width: 0;
+        padding: clamp(1.25rem, 3vw, 2rem);
+        border: 1px solid rgba(26, 26, 27, 0.09);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 12px 36px rgba(26, 26, 27, 0.045);
+      }
+
+      .form-panel__info h3 {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-panel__info p {
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+      }
+
+      .phone-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        margin-bottom: 1.25rem;
+        text-decoration: none;
+      }
+
+      .phone-block__label {
+        color: #626262;
+        font-size: 0.9rem;
+      }
+
+      .phone-block__number {
+        color: var(--orange, #d97200);
+        font-size: 1.6rem;
+        font-weight: 750;
+        letter-spacing: -0.02em;
+      }
+
+      .form__row {
+        margin-bottom: 1.2rem;
+      }
+
+      .form__row label {
+        display: block;
+        margin-bottom: 0.45rem;
+        font-weight: 650;
+      }
+
+      .form__row input,
+      .form__row textarea {
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 48px;
+        padding: 0.8rem 0.9rem;
+        border: 1px solid #d5d3d0;
+        border-radius: 7px;
+        background: #fff;
+        color: #1a1a1b;
+        font: inherit;
+      }
+
+      .form__row textarea {
+        min-height: 140px;
+        resize: vertical;
+      }
+
+      .form__row input:focus-visible,
+      .form__row textarea:focus-visible,
+      .form__check input:focus-visible,
+      .form button:focus-visible {
+        outline: 3px solid rgba(217, 114, 0, 0.3);
+        outline-offset: 2px;
+        border-color: var(--orange, #d97200);
+      }
+
+      .form__check {
+        display: grid;
+        grid-template-columns: 20px minmax(0, 1fr);
+        gap: 0.75rem;
+        align-items: start;
+        margin-block: 1.5rem;
+      }
+
+      .form__check input {
+        width: 18px;
+        height: 18px;
+        margin-top: 0.25rem;
+        accent-color: var(--orange, #d97200);
+      }
+
+      .form__check label {
+        font-size: 0.92rem;
+        line-height: 1.65;
+      }
+
+      .form__error,
+      .form__success {
+        padding: 0.9rem 1rem;
+        border-radius: 7px;
+        line-height: 1.6;
+      }
+
+      .form__error {
+        border: 1px solid #d9a3a3;
+        background: #fff3f3;
+        color: #8d2020;
+      }
+
+      .form__success {
+        border: 1px solid #a7d6b2;
+        background: #f0fbf2;
+        color: #205d30;
+      }
+
+      .form .btn {
+        min-height: 48px;
+        cursor: pointer;
+      }
+
+      .form-honeypot {
+        position: absolute !important;
+        left: -10000px !important;
+        top: auto !important;
+        width: 1px !important;
+        height: 1px !important;
+        overflow: hidden !important;
+      }
+
+      @media (max-width: 760px) {
+        .form-panel {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .form-panel__info,
+        .form-panel > .form {
+          padding: 1.25rem;
+        }
+
+        .phone-block__number {
+          font-size: 1.45rem;
+        }
+      }
+    </style>
   </head>
+
   <body data-page="kontakt" data-cta="#angebot">
     <div data-include="header"></div>
+
     <main id="main">
+      <!-- ================================================
+         START: SEITENHEADER
+         ================================================ -->
+
       <header class="page-hero">
         <div class="page-hero__media">
-          <img src="assets/img/wb/header4_147fdd73d8.jpg" alt="" />
+          <img
+            src="/Winterling/assets/img/wb/header4_147fdd73d8.jpg"
+            alt=""
+            fetchpriority="high"
+          />
           <div class="page-hero__overlay"></div>
         </div>
+
         <div class="page-hero__content">
           <p class="eyebrow" style="color: #ffb15c">Kontakt</p>
           <h1 class="page-hero__title">Wir freuen uns auf Ihre Anfrage</h1>
         </div>
       </header>
 
-      <!-- =====================================================
-     START: KONTAKTBEREICH
-     ===================================================== -->
+      <!-- ================================================
+         ENDE: SEITENHEADER
+         ================================================ -->
 
-      <section class="content-block glow-spot glow-spot--top">
-        <div class="wrap" style="max-width: 760px">
-          <p>
-            Am schnellsten erreichen Sie uns telefonisch unter
-            <a
-              href="tel:+4960476940"
-              style="color: var(--orange); font-weight: 600"
-            >
-              06047/6940 </a
-            >. Für eine unverbindliche Anfrage nutzen Sie das Formular oder
-            schreiben uns an
-            <span
-              class="protected-email"
-              data-user="info"
-              data-domain="winterling-baudeko.de"
-            >
-              info(at)winterling-baudeko.de
-            </span>
-            – wir melden uns persönlich bei Ihnen.
+      <!-- ================================================
+         START: KONTAKTEINSTIEG
+         ================================================ -->
+
+      <section class="contact-intro content-block glow-spot glow-spot--top">
+        <div class="wrap contact-intro__inner">
+          <p class="contact-intro__text">
+            Sie haben Fragen zu unseren Leistungen oder möchten ein Angebot
+            anfragen? Rufen Sie uns direkt unter
+            <a href="tel:+4960476940">06047/6940</a> an oder nutzen Sie unser
+            Kontaktformular. Wir freuen uns auf Ihre Nachricht.
           </p>
         </div>
       </section>
 
-      <!-- =====================================================
-     ENDE: KONTAKTBEREICH
-     ===================================================== -->
+      <!-- ================================================
+         ENDE: KONTAKTEINSTIEG
+         ================================================ -->
 
-      <!-- =====================================================
-     START: ANFRAGEFORMULAR
-     ===================================================== -->
+      <!-- ================================================
+         START: KONTAKT UND ANFRAGEFORMULAR
+         ================================================ -->
 
       <section class="form-section" id="angebot" aria-labelledby="form-title">
         <div class="wrap">
-          <p class="eyebrow">Anfrage</p>
+          <p class="eyebrow">Kontakt</p>
           <h2 id="form-title" class="section-title">Unverbindlich anfragen</h2>
 
           <div class="form-panel">
-            <div class="form-panel__info">
-              <h3>Kontaktdaten</h3>
+            <!-- Kontaktdaten -->
+            <aside
+              class="form-panel__info"
+              aria-labelledby="contact-details-title"
+            >
+              <h3 id="contact-details-title">So erreichen Sie uns</h3>
 
               <a class="phone-block" href="tel:+4960476940">
-                <span class="phone-block__label">Telefon</span>
+                <span class="phone-block__label">Rufen Sie uns an</span>
                 <span class="phone-block__number">06047/6940</span>
               </a>
 
               <p><strong>Fax:</strong> 06047/2356</p>
 
               <p>
-                <strong>E-Mail:</strong>
+                <strong>E-Mail:</strong><br />
+
                 <span
                   class="protected-email"
                   data-user="info"
                   data-domain="winterling-baudeko.de"
+                  role="link"
+                  tabindex="0"
+                  aria-label="E-Mail an Winterling schreiben"
                 >
                   info(at)winterling-baudeko.de
                 </span>
               </p>
 
               <p>
-                <strong>Adresse:</strong><br />
+                <strong>Adresse</strong><br />
                 Winterling GmbH Baudekoration<br />
                 Breiter Weg 3<br />
                 63674 Altenstadt-Oberau
               </p>
 
               <p>
-                <strong>Social Media:</strong>
+                <strong>Social Media</strong><br />
                 <a
                   href="https://www.facebook.com/Winterling-GmbH-Baudekoration-708457589363374"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style="color: var(--orange)"
+                  >Facebook</a
                 >
-                  Facebook
-                </a>
-                ·
+                <span aria-hidden="true"> · </span>
                 <a
                   href="https://www.instagram.com/winterling_baudekoration/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style="color: var(--orange)"
+                  >Instagram</a
                 >
-                  Instagram
-                </a>
               </p>
-            </div>
+            </aside>
 
+            <!-- Kontaktformular -->
             <form
               class="form"
               id="kontakt-form"
@@ -200,17 +396,7 @@
               method="post"
               novalidate
             >
-              <div
-                class="form-honeypot"
-                aria-hidden="true"
-                style="
-                  position: absolute;
-                  left: -10000px;
-                  width: 1px;
-                  height: 1px;
-                  overflow: hidden;
-                "
-              >
+              <div class="form-honeypot" aria-hidden="true">
                 <label for="c-honey">Website / Homepage</label>
                 <input
                   type="text"
@@ -241,47 +427,51 @@
               />
 
               <div class="form__row">
-                <label for="name">Name *</label>
+                <label for="name">Ihr Name *</label>
                 <input
                   id="name"
                   name="name"
                   type="text"
                   autocomplete="name"
+                  maxlength="120"
                   required
                 />
               </div>
 
               <div class="form__row">
-                <label for="phone">Telefon *</label>
+                <label for="phone">Ihre Telefonnummer *</label>
                 <input
                   id="phone"
                   name="phone"
                   type="tel"
                   autocomplete="tel"
+                  maxlength="50"
                   required
                 />
               </div>
 
               <div class="form__row">
-                <label for="email">E-Mail *</label>
+                <label for="email">Ihre E-Mail-Adresse *</label>
                 <input
                   id="email"
                   name="email"
                   type="email"
                   autocomplete="email"
+                  maxlength="254"
                   required
                 />
               </div>
 
               <div class="form__row">
-                <label for="message">Nachricht *</label>
+                <label for="message">Wie können wir Ihnen helfen? *</label>
                 <textarea
                   id="message"
                   name="message"
                   rows="5"
-                  required
                   minlength="5"
-                  placeholder="Kurz: Was ist das Anliegen? Wann passt ein Termin?"
+                  maxlength="5000"
+                  required
+                  placeholder="Beschreiben Sie kurz Ihr Anliegen und wann Sie erreichbar sind."
                 ></textarea>
               </div>
 
@@ -294,35 +484,22 @@
                   required
                 />
                 <label for="privacy">
-                  Ich willige ein, dass meine Angaben zur Bearbeitung der
-                  Anfrage per E-Mail an
-                  <span
-                    class="protected-email"
-                    data-user="info"
-                    data-domain="winterling-baudeko.de"
-                  >
-                    info|at|winterling-baudeko.de
-                  </span>
-                  übermittelt und verwendet werden. Hinweise in der
-                  <a href="/Winterling/datenschutz">Datenschutzerklärung</a>. *
+                  Ich habe die
+                  <a href="/Winterling/datenschutz">Datenschutzerklärung</a> zur Kenntnis
+                  genommen und willige ein, dass meine Angaben zur Bearbeitung
+                  meiner Anfrage verarbeitet werden. *
                 </label>
               </div>
 
-              <p class="form__error" id="form-error" hidden>
-                Bitte Pflichtfelder ausfüllen. Bei Problemen:
-                <span
-                  class="protected-email"
-                  data-user="info"
-                  data-domain="winterling-baudeko.de"
-                >
-                  info|at|winterling-baudeko.de
-                </span>
-                oder <a href="tel:+4960476940">06047/6940</a>.
+              <p class="form__error" id="form-error" role="alert" hidden>
+                Bitte überprüfen Sie Ihre Eingaben und füllen Sie alle
+                Pflichtfelder korrekt aus. Alternativ erreichen Sie uns unter
+                <a href="tel:+4960476940">06047/6940</a>.
               </p>
 
-              <p class="form__success" id="form-success" hidden>
-                Vielen Dank! Ihre Anfrage wurde gesendet – wir melden uns
-                zeitnah bei Ihnen.
+              <p class="form__success" id="form-success" role="status" hidden>
+                Vielen Dank für Ihre Nachricht. Wir melden uns zeitnah bei
+                Ihnen.
               </p>
 
               <button class="btn btn--primary" type="submit" id="form-submit">
@@ -333,11 +510,13 @@
         </div>
       </section>
 
-      <!-- =====================================================
-     ENDE: ANFRAGEFORMULAR
-     ===================================================== -->
+      <!-- ================================================
+         ENDE: KONTAKT UND ANFRAGEFORMULAR
+         ================================================ -->
     </main>
+
     <div data-include="footer"></div>
-    <script src="js/main.js" defer></script>
+
+    <script src="/Winterling/js/main.js" defer></script>
   </body>
 </html>
