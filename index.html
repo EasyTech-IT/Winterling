@@ -129,14 +129,20 @@
       <section class="hero hero--brand" aria-labelledby="hero-title">
         <!-- START: Hintergrundbild -->
         <div class="hero__media" aria-hidden="true">
-          <img
-            src="assets/img/wb/Winterling-Teamfoto-03_940x280_01_aa1e7a61f6.jpg"
-            alt=""
-            width="940"
-            height="280"
-            fetchpriority="high"
-            decoding="async"
-          />
+          <picture>
+            <source
+              media="(max-width: 600px)"
+              srcset="assets/img/wb/herohandy.jpg"
+            />
+            <img
+              src="assets/img/wb/hero.jpg"
+              alt=""
+              width="940"
+              height="280"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
           <div class="hero__overlay"></div>
         </div>
         <!-- ENDE: Hintergrundbild -->
@@ -275,7 +281,7 @@
               href="/Winterling/leistungen/verputzarbeiten"
             >
               <img
-                src="assets/img/wb/assets/img/wb/12.png"
+                src="assets/img/wb/12.png"
                 alt=""
                 width="120"
                 height="120"
